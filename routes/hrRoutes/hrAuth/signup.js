@@ -1,13 +1,13 @@
-const User = require('../models/user');
+const User = require('../../../models/userHR');
 const bcrypt = require('bcrypt');
 const JWT_SECRET = 'thisisthesecratekeyoftheproject12345'
 const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 
-const Signup = async (req, res) => {
-    const { name, email, password } = req.body;
+const hrSignup = async (req, res) => {
+    const { fname, lname, email, companyName, designation, number, password } = req.body;
 
-    if (!name || !email || !password) {
+    if (!fname || !lname || !companyName || !email || !designation || !number || !password) {
         res.status(422).json({ success: false, message: "wrong credintial" });
         return;
     }
@@ -16,8 +16,12 @@ const Signup = async (req, res) => {
 
         // Validation
         const validateSignupInputs = [
-            body('name').notEmpty(),
+            body('fname').notEmpty(),
+            body('lname').notEmpty(),
+            body('companyName').notEmpty(),
+            body('designation').notEmpty(),
             body('email').isEmail(),
+            body('number').isEmail(),
             body('password').isLength({ min: 3 }),
         ];
 
@@ -41,8 +45,12 @@ const Signup = async (req, res) => {
 
             // Create new user
             const user = new User({
-                name: name,
+                fname: fname,
+                lname: lname,
+                companyName: companyName,
+                designation: designation,
                 email: email,
+                number: number,
                 password: hashedPassword
             })
             const userData = await user.save();
@@ -61,4 +69,4 @@ const Signup = async (req, res) => {
     }
 }
 
-module.exports = Signup;
+module.exports = hrSignup;

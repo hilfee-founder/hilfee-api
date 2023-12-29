@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema({
+
+const userHr = mongoose.Schema({
     fname: {
         type: String,
         required: true,
@@ -28,17 +29,28 @@ const userSchema = new mongoose.Schema({
         required: true,
         default: null,
     },
-    role: {
+    gender: {
         type: String,
-        enum: ['user', 'admin'],
-        default: 'user',
-    }
+        default: null,
+    },
+    avatar: {
+        type: String,
+        default: null,
+    },
+    companyName: {
+        type: String,
+        default: null
+    },
+    designation: {
+        type: String,
+        default: null
+    },
 },
     {
         timestamps: true
     }
 )
 
-const users = new mongoose.model("users", userSchema);
+const userhr = new mongoose.model("userhr", userHr);
 
-module.exports = users;
+module.exports = userhr
