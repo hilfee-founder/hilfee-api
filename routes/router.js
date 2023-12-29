@@ -4,7 +4,7 @@ const Signup = require('./signup');
 const Login = require('./login');
 
 
-route.post('/register', Login);
+route.post('/login', Login);
 route.post('/signup', Signup);
 
 module.exports = route;
