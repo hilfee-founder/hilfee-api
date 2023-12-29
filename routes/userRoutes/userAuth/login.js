@@ -1,9 +1,9 @@
-const User = require('../models/user');
+const User = require('../../../models/user');
 const bcrypt = require('bcrypt');
 const JWT_SECRET = 'thisisthesecratekeyoftheproject12345'
 const jwt = require('jsonwebtoken');
 
-const Login = async (req, res) => {
+const userLogin = async (req, res) => {
     const { email, password } = req.body;
 
     try {
@@ -45,4 +45,4 @@ const Login = async (req, res) => {
 
 }
 
-module.exports = Login;
+module.exports = userLogin;
