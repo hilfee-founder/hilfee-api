@@ -1,6 +1,6 @@
 const userDetail = require("../../models/userDetails")
 
-const profile=(req,res)=>{
+const profile=async(req,res)=>{
     const CV=req.files.CV[0].filename;
     const cert=req.files.certifications;
     const certifications=cert.map((c)=>{
@@ -8,14 +8,13 @@ const profile=(req,res)=>{
     })
 
     try{
-        const user=userDetail({...req.body,CV,certifications})
-        user.save()
+        const user=await userDetail.create({...req.body,CV,certifications})
         console.log(user);
         res.json(user)
     }
     catch(e){
-        console.error('Error in uploading:', error);
-        res.status(400).json({ success: false, message: "Upload failed!" });
+        console.error('Error in uploading:', e);
+        res.json(e)
     }
 }
 

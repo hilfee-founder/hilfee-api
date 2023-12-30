@@ -5,18 +5,18 @@ const userDetail = mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        default: null
     },
     email: {
         type: String,
-        default: null,
+        required: true,
     },
     contactNo: {
         type: String,
+        required: true,
     },
     CV: {
         type: String,
-        default: null,
+        required: true,
     },
     education:{
         college:String,
