@@ -11,37 +11,34 @@ const userDetail = mongoose.Schema({
         type: String,
         default: null,
     },
-    phone: {
-        type: Number,
+    contactNo: {
+        type: String,
     },
     CV: {
         type: String,
         default: null,
     },
-    Education:{
+    education:{
         college:String,
         degree:String,
-        Specialization:String,
-        Duration:String
+        specialization:String,
+        clgDuration:String
     },
-    workExp: {
-        company:String,
-        job_title:String,
-        Duration:String
+    workExperience: {
+        companyName:String,
+        jobTitle:String,
+        workDuration:String,
+        currentCTC:String
     },
     currentLocation: {
         type: String,
         default: null
     },
-    currentPay: {
-        type: String,
-        default: null
-    },
-    techSkill: {
+    technicalSkills: {
         type: Array,
         default: null
     },
-    certification: {
+    certifications: {
         type: Array,
         default: null
     },

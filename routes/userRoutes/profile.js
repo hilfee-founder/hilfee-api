@@ -2,13 +2,13 @@ const userDetail = require("../../models/userDetails")
 
 const profile=(req,res)=>{
     const CV=req.files.CV[0].filename;
-    const cert=req.files.cert;
-    const certification=cert.map((c)=>{
+    const cert=req.files.certifications;
+    const certifications=cert.map((c)=>{
         return c.filename
     })
 
     try{
-        const user=userDetail({...req.body,CV,certification})
+        const user=userDetail({...req.body,CV,certifications})
         user.save()
         console.log(user);
         res.json(user)
