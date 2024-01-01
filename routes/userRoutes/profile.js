@@ -1,3 +1,4 @@
+
 const userDetail = require("../../models/userDetails")
 
 const profile=async(req,res)=>{
@@ -19,3 +20,4 @@ const profile=async(req,res)=>{
 }
 
 module.exports=profile
+

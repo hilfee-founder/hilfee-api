@@ -1,6 +1,6 @@
 const User = require('../../../models/userHR');
 const bcrypt = require('bcrypt');
-const JWT_SECRET = 'thisisthesecratekeyoftheproject12345'
+const JWT_SECRET = process.env.JWT_SECRET;
 const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 
@@ -21,7 +21,7 @@ const hrSignup = async (req, res) => {
             body('companyName').notEmpty(),
             body('designation').notEmpty(),
             body('email').isEmail(),
-            body('number').isEmail(),
+            body('number').isLength({ min: 10, max: 10 }),
             body('password').isLength({ min: 3 }),
         ];
 
@@ -35,6 +35,9 @@ const hrSignup = async (req, res) => {
 
         // Check if user already exists
         const checkUser = await User.findOne({ email: email });
+
+        
+
         if (checkUser) {
             res.status(422).json({ success: false, message: "This user is already present" });
         } else {
@@ -55,11 +58,12 @@ const hrSignup = async (req, res) => {
             })
             const userData = await user.save();
 
+            // console.log(userData);
 
             // Return token for future authentication
             const token = jwt.sign({ userId: userData._id }, JWT_SECRET, { expiresIn: '1h' });
 
-            res.status(201).json({ success: true, message: "User is created", token });
+            res.status(201).json({ success: true, message: "User is created", token, userData });
 
         }
 

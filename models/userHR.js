@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 
-const userHr = mongoose.Schema({
+const userHrSchema = mongoose.Schema({
     fname: {
         type: String,
         required: true,
@@ -45,12 +45,16 @@ const userHr = mongoose.Schema({
         type: String,
         default: null
     },
+    jobPosts: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'JobPost',
+    }],
 },
     {
         timestamps: true
     }
 )
 
-const userhr = new mongoose.model("userhr", userHr);
+const userhr = new mongoose.model("userhr", userHrSchema);
 
 module.exports = userhr
