@@ -8,22 +8,23 @@ const fetchUser = async (req, res, next) => {
 
     // bringing token from user
     const token = req.header('token');
+    // console.log('Received token:', token);
+
     if (!token) {
-        return res.status(401).send({ message: "Please authenticate using a valid token" })
+        res.status(401).send({ message: "Please give valid token" })
     }
 
     try {
-        const data = jwt.verify(token, process.env.JWT_SECRET) //will decode the token
-        console.log(data);
-        // console.log(data.user.id);
-        req.userId = data.user.user;
+        const decoded = jwt.verify(token, process.env.JWT_SECRET) //will decode the token
+        // console.log('Decoded token:', decoded);
+        req.userId = decoded.userId;
         next()
     }
 
     catch (error) {
         res.status(401).send({ message: "Please authenticate using a valid token" })
     }
-    
+
 }
 
 

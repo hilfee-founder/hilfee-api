@@ -36,8 +36,6 @@ const hrSignup = async (req, res) => {
         // Check if user already exists
         const checkUser = await User.findOne({ email: email });
 
-        
-
         if (checkUser) {
             res.status(422).json({ success: false, message: "This user is already present" });
         } else {
