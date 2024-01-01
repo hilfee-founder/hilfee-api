@@ -1,61 +1,53 @@
 const mongoose = require('mongoose');
 
-const userSchema = mongoose.Schema({
-    email: {
+const userDetail = mongoose.Schema({
+    fullName:{
         type: String,
         required: true,
         trim: true,
-        default: null
     },
-    gender: {
+    email: {
         type: String,
-        default: null,
+        required: true,
     },
-    dob: {
-        type: Date,
-    },
-    avatar: {
+    contactNo: {
         type: String,
-        default: null,
+        required: true,
     },
-    resume: {
+    CV: {
         type: String,
-        default: null,
+        required: true,
     },
-    education: {
-        type: String,
-        default: null
+    education:{
+        college:String,
+        degree:String,
+        specialization:String,
+        clgDuration:String
     },
-    workExp: {
-        type: String,
-        default: null
-    },
-    duration: {
-        type: Number,
-        default: null
+    workExperience: {
+        companyName:String,
+        jobTitle:String,
+        workDuration:String,
+        currentCTC:String
     },
     currentLocation: {
         type: String,
         default: null
     },
-    currentPay: {
-        type: String,
-        default: null
-    },
-    techSkill: {
+    technicalSkills: {
         type: Array,
         default: null
     },
-    certification: {
-        type: String,
+    certifications: {
+        type: Array,
         default: null
     },
 },
     {
-        timestapm: true
+        timestamps: true
     }
 )
 
-const userDetail = new mongoose.model("userDetail", userSchema);
+const userDetailModel = new mongoose.model("userDetail", userDetail);
 
-module.exports = userDetail;
+module.exports = userDetailModel;
