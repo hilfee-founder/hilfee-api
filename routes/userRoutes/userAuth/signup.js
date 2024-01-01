@@ -1,14 +1,14 @@
 const User = require('../../../models/user');
 const bcrypt = require('bcrypt');
-const JWT_SECRET = 'thisisthesecratekeyoftheproject12345'
+const JWT_SECRET = 'thisisthesecratekeyoftheproject12345';
 const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 
 const userSignup = async (req, res) => {
-    const { name, email, password } = req.body;
+    const { fname, lname, email, password, number } = req.body;
 
-    if (!name || !email || !password) {
-        res.status(422).json({ success: false, message: "wrong credintial" });
+    if (!fname || !lname || !email || !password || !number) {
+        res.status(422).json({ success: false, message: "Wrong credentials" });
         return;
     }
 
@@ -16,9 +16,11 @@ const userSignup = async (req, res) => {
 
         // Validation
         const validateSignupInputs = [
-            body('name').notEmpty(),
+            body('fname').notEmpty(),
+            body('lname').notEmpty(),
             body('email').isEmail(),
             body('password').isLength({ min: 3 }),
+            body('number').isNumeric(),
         ];
 
         // Check for validation errors
@@ -41,12 +43,13 @@ const userSignup = async (req, res) => {
 
             // Create new user
             const user = new User({
-                name: name,
+                fname: fname,
+                lname: lname,
                 email: email,
-                password: hashedPassword
-            })
+                password: hashedPassword,
+                number: number
+            });
             const userData = await user.save();
-
 
             // Return token for future authentication
             const token = jwt.sign({ userId: userData._id }, JWT_SECRET, { expiresIn: '1h' });
@@ -57,7 +60,7 @@ const userSignup = async (req, res) => {
 
     } catch (error) {
         console.error('Error during registration:', error);
-        res.status(400).json({ success: false, message: "registration failed!" });
+        res.status(400).json({ success: false, message: "Registration failed!" });
     }
 }
 
