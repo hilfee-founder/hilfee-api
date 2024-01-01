@@ -9,16 +9,16 @@ const PORT = process.env.PORT || 8000
 
 
 const corsOption = {
-    origin: process.env.ORIGIN_URI, // Replace with your client's origin
+    origin: "http://localhost:3000", // Replace with your client's origin
     credentials: true, // Allow sending of cookies
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'Set-Cookie']
+    allowedHeaders: ['Content-Type', 'Authorization', 'Set-Cookie', 'Token']
 }
 
 app.use(cors(corsOption));
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser());
-app.use(express.urlencoded({extended:false}))
 app.use(route)
 
  

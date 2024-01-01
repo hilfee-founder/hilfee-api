@@ -1,6 +1,5 @@
 const User = require('../../../models/user');
 const bcrypt = require('bcrypt');
-const JWT_SECRET = 'thisisthesecratekeyoftheproject12345';
 const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 
@@ -52,7 +51,7 @@ const userSignup = async (req, res) => {
             const userData = await user.save();
 
             // Return token for future authentication
-            const token = jwt.sign({ userId: userData._id }, JWT_SECRET, { expiresIn: '1h' });
+            const token = jwt.sign({ userId: userData._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
             res.status(201).json({ success: true, message: "User is created", token });
 
