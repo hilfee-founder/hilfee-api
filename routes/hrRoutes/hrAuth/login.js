@@ -1,6 +1,5 @@
 const User = require('../../../models/userHR');
 const bcrypt = require('bcrypt');
-const JWT_SECRET = 'thisisthesecratekeyoftheproject12345'
 const jwt = require('jsonwebtoken');
 
 const hrLogin = async (req, res) => {
@@ -27,7 +26,7 @@ const hrLogin = async (req, res) => {
 
 
         // Return token for future authentication
-        const token = jwt.sign({ userId: userlogin._id }, JWT_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({ userId: userlogin._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
         res.cookie("user_data", token, {
             expires: new Date(Date.now() + 900000),
