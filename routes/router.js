@@ -5,12 +5,11 @@ const userLogin = require('./userRoutes/userAuth/login.js');
 const hrSignup = require('./hrRoutes/hrAuth/signup.js');
 const hrLogin = require('./hrRoutes/hrAuth/login');
 
+
 const createJobPost = require('./hrRoutes/jobPost.js');
 const getJobPost = require('./hrRoutes/getJobs.js');
 const verifyUser = require('../controllers/verifyUser.js');
 const fetchUser = require('../middlewares/fetchUserFromToken.js');
-
-const userProfile=require('../routes/userRoutes/profile.js')
 
 const userProfile=require('../routes/userRoutes/profile.js')
 const cpUpload=require('./multer/multer.js')
