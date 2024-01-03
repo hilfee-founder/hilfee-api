@@ -4,7 +4,8 @@ const cors = require('cors')
 const express = require('express');
 const app = express();
 const cookieParser = require('cookie-parser');
-const route = require('./routes/router')
+const route = require('./routes/router');
+const videoRouter = require('./routes/userRoutes/videoResume');
 const PORT = process.env.PORT || 8000
 
 
@@ -19,6 +20,7 @@ app.use(cors(corsOption));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser());
+app.use(videoRouter)
 app.use(route)
 
  

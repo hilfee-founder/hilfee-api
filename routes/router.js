@@ -24,9 +24,6 @@ route.post('/hr/jobpost', createJobPost);
 route.get('/hr/getjobpost/:id', getJobPost);
 route.post('/verifyuser', fetchUser, verifyUser);
 
-
-
-
 route.post('/user/profile',cpUpload, userProfile);
 
 
