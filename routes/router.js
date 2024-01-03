@@ -11,8 +11,6 @@ const verifyUser = require('../controllers/verifyUser.js');
 const fetchUser = require('../middlewares/fetchUserFromToken.js');
 
 const userProfile=require('../routes/userRoutes/profile.js')
-
-const userProfile=require('../routes/userRoutes/profile.js')
 const cpUpload=require('./multer/multer.js')
 
 
@@ -24,9 +22,6 @@ route.post('/hr/signup', hrSignup);
 route.post('/hr/jobpost', createJobPost);
 route.get('/hr/getjobpost/:id', getJobPost);
 route.post('/verifyuser', fetchUser, verifyUser);
-
-
-
 
 route.post('/user/profile',cpUpload, userProfile);
 
