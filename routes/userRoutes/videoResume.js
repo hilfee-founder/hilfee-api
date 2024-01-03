@@ -231,7 +231,7 @@ videoRouter.delete('/delete/:id', async (req, res) => {
 
 // chatGPT code
 
-const OPENAI_API_KEY = "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"
+const OPENAI_API_KEY = process.env.OPENAPI_SECRET_KEY;
 
 
 videoRouter.post('/generate-feedback/:id', async (req, res) => {
