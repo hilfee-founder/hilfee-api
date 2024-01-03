@@ -5,6 +5,7 @@ const userLogin = require('./userRoutes/userAuth/login.js');
 const hrSignup = require('./hrRoutes/hrAuth/signup.js');
 const hrLogin = require('./hrRoutes/hrAuth/login');
 
+
 const createJobPost = require('./hrRoutes/jobPost.js');
 const getJobPost = require('./hrRoutes/getJobs.js');
 const verifyUser = require('../controllers/verifyUser.js');

@@ -5,43 +5,40 @@ const userDetail = mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        default: null
     },
     email: {
         type: String,
-        default: null,
+        required: true,
     },
-    phone: {
-        type: Number,
+    contactNo: {
+        type: String,
+        required: true,
     },
     CV: {
         type: String,
-        default: null,
+        required: true,
     },
-    Education:{
+    education:{
         college:String,
         degree:String,
-        Specialization:String,
-        Duration:String
+        specialization:String,
+        clgDuration:String
     },
-    workExp: {
-        company:String,
-        job_title:String,
-        Duration:String
+    workExperience: {
+        companyName:String,
+        jobTitle:String,
+        workDuration:String,
+        currentCTC:String
     },
     currentLocation: {
         type: String,
         default: null
     },
-    currentPay: {
-        type: String,
-        default: null
-    },
-    techSkill: {
+    technicalSkills: {
         type: Array,
         default: null
     },
-    certification: {
+    certifications: {
         type: Array,
         default: null
     },
