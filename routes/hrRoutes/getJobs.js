@@ -5,7 +5,7 @@ const jobPostModel = require("../../models/jobPost");
 const getJobPost = async (req, res) => {
     try {
         // Ensure that the request contains the HR user ID
-        const { userId } = req.params;
+        // const { userId } = req.params;
 
         console.log(userId)
         if (!userId) {
@@ -13,7 +13,7 @@ const getJobPost = async (req, res) => {
         }
 
         // Retrieve job posts for the specific HR user
-        const jobPosts = await jobPostModel.find({ postedBy: userId });
+        const jobPosts = await jobPostModel.find();
         console.log(jobPosts)
         res.status(200).json({ success: true, data: jobPosts });
     } catch (error) {
