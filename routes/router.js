@@ -13,6 +13,6 @@ route.post('/user/signup', userSignup);
 route.post('/hr/login', hrLogin);
 route.post('/hr/signup', hrSignup);
 route.post('/hr/jobpost', createJobPost);
-route.get('/hr/getjobpost/:id', getJobPost);
+route.get('/hr/getjobpost', getJobPost);
 
 module.exports = route;
