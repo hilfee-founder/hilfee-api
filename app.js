@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 8000
 
 
 const corsOption = {
-    origin: "http://localhost:3000", // Replace with your client's origin
+    origin: process.env.ORIGIN_URI, // Replace with your client's origin
     credentials: true, // Allow sending of cookies
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Set-Cookie', 'Token']
