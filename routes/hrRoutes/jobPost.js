@@ -13,19 +13,30 @@ const createJobPost = async (req, res) => {
             workExp,
             uploadJD,
             ctcRange,
-            roleCategory,
+            roleCategory, 
             department,
-            techSkill,
-            postedBy, // Include HR user ID in the request body
+            techSkill, // Include HR user ID in the request body
         } = req.body;
 
+        console.log(title,
+            company,
+            location,
+            description,
+            requirements,
+            workExp,
+            uploadJD,
+            ctcRange,
+            roleCategory, 
+            department,
+            techSkill)
+
         // Check for required fields
-        if (!title || !company || !location || !postedBy) {
+        if (!title || !company || !location) {
             return res.status(400).json({ success: false, message: 'Title, company, location, and HR user ID are required fields' });
         }
 
         // Check if the HR user exists
-        const hrUser = await userHrModel.findById(postedBy);
+        const hrUser = await userHrModel.findById(req.userId);
         if (!hrUser) {
             return res.status(404).json({ success: false, message: 'HR user not found' });
         }
@@ -41,8 +52,7 @@ const createJobPost = async (req, res) => {
             ctcRange: ctcRange,
             roleCategory: roleCategory,
             department: department,
-            techSkill: techSkill,
-            postedBy: postedBy, // Assign HR user ID to the 'postedBy' field
+            techSkill: techSkill, // Assign HR user ID to the 'postedBy' field
         });
 
         // Save the new job post to the database

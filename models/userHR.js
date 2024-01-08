@@ -47,7 +47,7 @@ const userHrSchema = mongoose.Schema({
     },
     jobPosts: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'JobPost',
+        ref: 'jobPost',
     }],
 },
     {
