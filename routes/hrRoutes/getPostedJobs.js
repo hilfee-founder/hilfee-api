@@ -5,7 +5,7 @@ const getPostedJobs = async (req, res) => {
     try {
         // Ensure that the request contains the HR user ID
         const userId = req.userId;
-
+        
         if (!userId) {
             return res.status(400).json({ success: false, message: 'HR user ID is required' });
         }
